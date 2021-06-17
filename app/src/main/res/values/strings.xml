@@ -15,4 +15,6 @@
     <string name="menu_development">Development</string>
     <string name="menu_about">About</string>
     <string name="menu_calendar">Calendar</string>
+
+    <string name="sign_out">Logout</string>
 </resources>
