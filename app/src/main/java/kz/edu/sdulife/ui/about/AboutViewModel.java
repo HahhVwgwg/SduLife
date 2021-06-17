@@ -1,16 +1,16 @@
-package kz.edu.sdulife.ui.home;
+package kz.edu.sdulife.ui.about;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class AboutViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public AboutViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is about fragment");
     }
 
     public LiveData<String> getText() {

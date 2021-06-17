@@ -1,4 +1,4 @@
-package kz.edu.sdulife.ui.slideshow;
+package kz.edu.sdulife.ui.clubs;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,24 +11,23 @@ import android.support.v4.app.Fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 
-import kz.edu.sdulife.R;
-import kz.edu.sdulife.databinding.FragmentSlideshowBinding;
+import kz.edu.sdulife.databinding.FragmentClubsBinding;
 
-public class SlideshowFragment extends Fragment {
+public class ClubsFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
-    private FragmentSlideshowBinding binding;
+    private ClubsViewModel clubsViewModel;
+    private FragmentClubsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SlideshowViewModel.class);
+        clubsViewModel =
+                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(ClubsViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentClubsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textClubs;
+        clubsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

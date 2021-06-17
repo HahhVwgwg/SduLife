@@ -1,4 +1,4 @@
-package kz.edu.sdulife.ui.gallery;
+package kz.edu.sdulife.ui.news;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,24 +11,23 @@ import android.support.v4.app.Fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 
-import kz.edu.sdulife.R;
-import kz.edu.sdulife.databinding.FragmentGalleryBinding;
+import kz.edu.sdulife.databinding.FragmentNewsBinding;
 
-public class GalleryFragment extends Fragment {
+public class NewsFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
-    private FragmentGalleryBinding binding;
+    private NewsViewModel newsViewModel;
+    private FragmentNewsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(GalleryViewModel.class);
+        newsViewModel =
+                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(NewsViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentNewsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textNews;
+        newsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
