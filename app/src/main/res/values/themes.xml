@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SduLife" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.SduLife" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryDark">@color/purple_700</item>
@@ -16,4 +16,12 @@
     <style name="Theme.SduLife.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.SduLife.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="OutlinedBox.Changed.Colors" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox
+        </item>
+        <item name="color">@color/mainColor</item>
+        <item name="boxCollapsedPaddingTop">0dp</item>
+    </style>
+
 </resources>
