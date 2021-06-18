@@ -8,8 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import kz.edu.sdulife.R;
+import kz.edu.sdulife.common.BaseActivity;
+import kz.edu.sdulife.view.home.HomeActivity;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends BaseActivity {
 
     Button btn_sign_in;
     TextView forgot_psw;
@@ -23,7 +25,7 @@ public class SignInActivity extends AppCompatActivity {
         btn_sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Everything is working", Toast.LENGTH_SHORT).show();
+                openActivity(HomeActivity.class);finish();
             }
         });
 

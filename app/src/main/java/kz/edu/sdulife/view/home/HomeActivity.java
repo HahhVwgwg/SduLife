@@ -1,0 +1,72 @@
+package kz.edu.sdulife.view.home;
+
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.MenuItem;
+
+import kz.edu.sdulife.R;
+import kz.edu.sdulife.view.home.profile.ProfileFragment;
+
+public class HomeActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+
+        //Bottom nav - start
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        //Bottom nav - end
+
+        //Setting Home Fragment as a main fragment - start
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_layout,new ProfileFragment()).commit();
+        //Setting Home Fragment as a main fragment - start
+
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new
+            BottomNavigationView.OnNavigationItemSelectedListener(){
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+
+                    switch (item.getItemId()){
+//                        case R.id.nav_home:
+//                            openFragment(new HomeFragment());
+//                            break;
+//
+//                        case R.id.nav_favorite:
+//                            openFragment(new FavortiresFragment());
+//                            break;
+//
+//                        case R.id.nav_create:
+//                            openFragment(new CreateFragment());
+//                            break;
+//
+//                        case R.id.nav_message:
+//                            openFragment(new MessagesFragment());
+//                            break;
+
+                        case R.id.nav_profile:
+                            openFragment(new ProfileFragment());
+                            break;
+                    }
+
+
+                    return true;
+                }
+            };
+
+    public void openFragment(Fragment fragment){
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_layout,fragment)
+                .commit();
+    }
+}
