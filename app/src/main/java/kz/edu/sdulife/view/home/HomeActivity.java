@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import kz.edu.sdulife.R;
+import kz.edu.sdulife.view.home.main.MainFragment;
 import kz.edu.sdulife.view.home.profile.ProfileFragment;
 
 public class HomeActivity extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //Setting Home Fragment as a main fragment - start
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_layout,new ProfileFragment()).commit();
+                .replace(R.id.fragment_layout,new MainFragment()).commit();
         //Setting Home Fragment as a main fragment - start
 
     }
@@ -36,10 +37,10 @@ public class HomeActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     switch (item.getItemId()){
-//                        case R.id.nav_home:
-//                            openFragment(new HomeFragment());
-//                            break;
-//
+                        case R.id.nav_home:
+                            openFragment(new MainFragment());
+                            break;
+
 //                        case R.id.nav_favorite:
 //                            openFragment(new FavortiresFragment());
 //                            break;
