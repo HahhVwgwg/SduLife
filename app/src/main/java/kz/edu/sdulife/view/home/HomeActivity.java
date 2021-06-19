@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import kz.edu.sdulife.R;
 import kz.edu.sdulife.view.home.main.MainFragment;
+import kz.edu.sdulife.view.home.news.NewsFragment;
 import kz.edu.sdulife.view.home.profile.ProfileFragment;
 
 public class HomeActivity extends AppCompatActivity {
@@ -41,10 +42,10 @@ public class HomeActivity extends AppCompatActivity {
                             openFragment(new MainFragment());
                             break;
 
-//                        case R.id.nav_favorite:
-//                            openFragment(new FavortiresFragment());
-//                            break;
-//
+                        case R.id.nav_news:
+                            openFragment(new NewsFragment());
+                            break;
+
 //                        case R.id.nav_create:
 //                            openFragment(new CreateFragment());
 //                            break;
