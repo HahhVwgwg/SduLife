@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import kz.edu.sdulife.R;
 
@@ -14,7 +16,7 @@ import kz.edu.sdulife.R;
  * create an instance of this fragment.
  */
 public class NewsTabFragment extends Fragment {
-
+    androidx.appcompat.widget.SearchView searchView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +61,13 @@ public class NewsTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_newsfr_tb, container, false);
+        View view = inflater.inflate(R.layout.fragment_newsfr_tb, container, false);
+
+        searchView = view.findViewById(R.id.search_view);
+        String searchToken = "Search";
+        searchView.setQueryHint(searchToken);
+
+
+        return view;
     }
 }

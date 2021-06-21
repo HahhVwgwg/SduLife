@@ -9,5 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mainColor">#450649</color>
     <color name="bottom_nav_color">#C4C4C4</color>
+    <color name="text_dark">#31384F</color>
+    <color name="neutral_black">#151522</color>
+    <color name="text_dark_30">#C2C4CB</color>
+    <color name="text_dark_60">#838795</color>
+
 </resources>
 

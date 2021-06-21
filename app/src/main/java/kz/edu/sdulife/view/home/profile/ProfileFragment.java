@@ -1,12 +1,23 @@
 package kz.edu.sdulife.view.home.profile;
 
 import android.os.Bundle;
+
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toolbar;
+
+import java.util.ArrayList;
 
 import kz.edu.sdulife.R;
+import kz.edu.sdulife.adapter.ProfileAdapter;
+import kz.edu.sdulife.model.ProfileItem;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +25,13 @@ import kz.edu.sdulife.R;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+    TextView toolbar_text;
+    RecyclerView profile_rec,contact_rec,account_stn_rec;
+    ProfileAdapter profileAdapter;
+    NestedScrollView nestedScrollView;
 
+//    ArrayList<ProfileItem> list = new ArrayList<>();
+//
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -23,6 +40,7 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -59,6 +77,38 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view =  inflater.inflate(R.layout.fragment_profile, container, false);
+        profile_rec = (RecyclerView)view.findViewById(R.id.profile_recyclerview);
+        contact_rec = (RecyclerView)view.findViewById(R.id.contacts_rec);
+        account_stn_rec = (RecyclerView)view.findViewById(R.id.account_stn_rec);
+        nestedScrollView = view.findViewById(R.id.nes_scroll_view);
+
+        toolbar_text = view.findViewById(R.id.toolbar_title);
+        toolbar_text.setText("Profile");
+
+        ArrayList<ProfileItem> list = new ArrayList<>();
+        ArrayList<ProfileItem> list1 = new ArrayList<>();
+        ArrayList<ProfileItem> list2 = new ArrayList<>();
+
+        //General Information - start
+        list.add(new ProfileItem("Full Name","Zhamshid Irisbayev"));
+        list.add(new ProfileItem("Id number","180103263"));
+        list.add(new ProfileItem("Speciality","Information Systems"));
+        list.add(new ProfileItem("Birthday","17.03.2001"));
+        profileAdapter = new ProfileAdapter(list, getContext());
+        profile_rec.setAdapter(profileAdapter);
+        profile_rec.setLayoutManager(new LinearLayoutManager(getContext()));
+        //General Information - end
+
+        //Contacts - start
+        list1.add(new ProfileItem("Phone","+7 771 973 17 17"));
+        list1.add(new ProfileItem("Email","180103263@stu.sdu.edu.kz"));
+        profileAdapter = new ProfileAdapter(list1, getContext());
+        contact_rec.setAdapter(profileAdapter);
+        contact_rec.setLayoutManager(new LinearLayoutManager(getContext()));
+        //Contacts - end
+
+
+        return view;
     }
 }

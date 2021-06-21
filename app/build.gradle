@@ -67,6 +67,9 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
+    //Circular image
+    implementation 'com.mikhaellopez:circularimageview:4.2.0'
+
     // CardView
     //noinspection GradleCompatible
     implementation 'androidx.cardview:cardview:1.0.0'
