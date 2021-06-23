@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".view.home.main.MainFragment">
-
-    <include
-        layout="@layout/toolbar_item"
-        android:id="@+id/tbar_title"
-        />
+    tools:context=".view.home.development.DevelopmentFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <include layout="@layout/toolbar_item"
+        />
+
     <TextView
         android:layout_width="match_parent"
         android:gravity="center"
@@ -19,6 +18,6 @@
         android:textColor="@color/mainColor"
         android:fontFamily="@font/poppins_semibold"
         android:layout_height="match_parent"
-        android:text="Main Fragment" />
+        android:text="Development Fragment" />
 
 </FrameLayout>

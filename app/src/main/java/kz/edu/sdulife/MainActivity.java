@@ -6,9 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import kz.edu.sdulife.common.BaseActivity;
 import kz.edu.sdulife.view.login.SignInActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     ImageView img_splash;
     private static int SPLASH_TIME_OUT = 1500;
 
@@ -23,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-                startActivity(intent);finish();
+                openActivity(SignInActivity.class);
 
             }
         },SPLASH_TIME_OUT);

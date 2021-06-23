@@ -5,30 +5,43 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import kz.edu.sdulife.R;
+import kz.edu.sdulife.common.BaseActivity;
+import kz.edu.sdulife.view.home.development.DevelopmentFragment;
 import kz.edu.sdulife.view.home.main.MainFragment;
 import kz.edu.sdulife.view.home.news.NewsFragment;
+import kz.edu.sdulife.view.home.notifications.NotificationsFragment;
 import kz.edu.sdulife.view.home.profile.ProfileFragment;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
+    private long backPressedTime;
+    private Toast backToast;
+    TextView custom_dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         //Bottom nav - start
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         //Bottom nav - end
 
-        //Setting Home Fragment as a main fragment - start
+        //Setting Main Fragment as a main fragment - start
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_layout,
                         new MainFragment()).commit();
-        //Setting Home Fragment as a main fragment - start
+        //Setting Main Fragment as a main fragment - start
 
     }
 
@@ -47,13 +60,13 @@ public class HomeActivity extends AppCompatActivity {
                             openFragment(new NewsFragment());
                             break;
 
-//                        case R.id.nav_create:
-//                            openFragment(new CreateFragment());
-//                            break;
-//
-//                        case R.id.nav_message:
-//                            openFragment(new MessagesFragment());
-//                            break;
+                        case R.id.nav_developments:
+                            openFragment(new DevelopmentFragment());
+                            break;
+
+                        case R.id.nav_notifications:
+                            openFragment(new NotificationsFragment());
+                            break;
 
                         case R.id.nav_profile:
                             openFragment(new ProfileFragment());
@@ -72,4 +85,24 @@ public class HomeActivity extends AppCompatActivity {
                 .replace(R.id.fragment_layout,fragment)
                 .commit();
     }
+    @Override
+    public void onBackPressed() {
+        final Toast toast = new Toast(getApplicationContext());
+
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+
+            super.onBackPressed();
+            return;
+        }else{
+            LayoutInflater layoutInflater = getLayoutInflater();
+            View layout = layoutInflater.inflate(R.layout.custom_toast_close_app,
+                    (ViewGroup)findViewById(R.id.close_toast_layout));
+            toast.setGravity(Gravity.BOTTOM,0,120);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setView(layout);
+            toast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
+
 }

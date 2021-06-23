@@ -5,39 +5,29 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_marginTop="10dp"
-    android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
-    android:background="@drawable/profile_rec_item_des"
+    android:background="@color/white"
     android:layout_marginBottom="3dp"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/value_name_layout"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:id="@+id/type"
+        android:gravity="center_vertical"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_gravity="center"
-            android:id="@+id/value_name"
+            android:id="@+id/type_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Language"
-            android:textColor="@color/text_dark_60"
+            android:text="General Information"
+            android:textColor="@color/text_dark_30"
             android:textSize="18sp" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_right_arrow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 

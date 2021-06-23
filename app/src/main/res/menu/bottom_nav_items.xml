@@ -23,13 +23,13 @@
 
 
     <item
-        android:id="@+id/nav_create"
+        android:id="@+id/nav_developments"
         android:icon="@drawable/ic_third3"
         android:color="@color/black"
         tools:ignore="MenuTitle"/>
 
     <item
-        android:id="@+id/nav_message"
+        android:id="@+id/nav_notifications"
         android:icon="@drawable/ic_fourth4"
         android:color="@color/black"
         tools:ignore="MenuTitle"/>

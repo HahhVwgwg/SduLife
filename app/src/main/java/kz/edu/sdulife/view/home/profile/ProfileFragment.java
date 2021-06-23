@@ -1,5 +1,6 @@
 package kz.edu.sdulife.view.home.profile;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.core.widget.NestedScrollView;
@@ -10,24 +11,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
+import kz.edu.sdulife.BuildConfig;
 import kz.edu.sdulife.R;
 import kz.edu.sdulife.adapter.ProfileAdapter;
+import kz.edu.sdulife.common.BaseFragment;
+import kz.edu.sdulife.listener.ProfileListener;
 import kz.edu.sdulife.model.ProfileItem;
+import kz.edu.sdulife.view.home.news.NewsFragment;
+import kz.edu.sdulife.view.home.news.tab_layout.FoundsFragment;
+import kz.edu.sdulife.view.home.news.tab_layout.NewsTabFragment;
+import kz.edu.sdulife.view.login.SignInActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
-    TextView toolbar_text;
-    RecyclerView profile_rec,contact_rec,account_stn_rec;
+public class ProfileFragment extends BaseFragment {
+
+    TextView toolbar_text,app_version,app_version_code;
+    RecyclerView profile_rec;
     ProfileAdapter profileAdapter;
+    Button log_out;
     NestedScrollView nestedScrollView;
 
 //    ArrayList<ProfileItem> list = new ArrayList<>();
@@ -79,34 +92,82 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
         profile_rec = (RecyclerView)view.findViewById(R.id.profile_recyclerview);
-        contact_rec = (RecyclerView)view.findViewById(R.id.contacts_rec);
-        account_stn_rec = (RecyclerView)view.findViewById(R.id.account_stn_rec);
-        nestedScrollView = view.findViewById(R.id.nes_scroll_view);
 
+        log_out = view.findViewById(R.id.log_out);
+        nestedScrollView = view.findViewById(R.id.nes_scroll_view);
+        app_version = view.findViewById(R.id.app_version);
+        app_version_code = view.findViewById(R.id.app_version_code);
         toolbar_text = view.findViewById(R.id.toolbar_title);
         toolbar_text.setText("Profile");
+        app_version.setText(BuildConfig.VERSION_NAME);
+        app_version_code.setText("(" + BuildConfig.VERSION_CODE + ")" );
+
+
+
+
+        log_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity(SignInActivity.class);
+            }
+        });
+
+
+        ProfileListener listener = new ProfileListener() {
+            @Override
+            public void onClick(int position) {
+                int count = 0;
+                switch (position){
+//                    case 9:openFragment(new FoundsFragment());
+//                    break;
+                    case 10:
+                        count = 1;
+                        if (count == 1) {
+                            ImageView switch_likes = (ImageView)(profile_rec.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.icon));
+                            Drawable myDrawable = getResources().getDrawable(R.drawable.ic_switch_on);
+                            switch_likes.setImageDrawable(myDrawable);
+                        }
+                        else {
+                            ImageView switch_likes = (ImageView)(profile_rec.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.icon));
+                            Drawable myDrawable = getResources().getDrawable(R.drawable.ic_switch_off);
+                            switch_likes.setImageDrawable(myDrawable);
+                        }
+                        break;
+
+                }
+            }
+        };
 
         ArrayList<ProfileItem> list = new ArrayList<>();
-        ArrayList<ProfileItem> list1 = new ArrayList<>();
-        ArrayList<ProfileItem> list2 = new ArrayList<>();
 
         //General Information - start
-        list.add(new ProfileItem("Full Name","Zhamshid Irisbayev"));
-        list.add(new ProfileItem("Id number","180103263"));
-        list.add(new ProfileItem("Speciality","Information Systems"));
-        list.add(new ProfileItem("Birthday","17.03.2001"));
-        profileAdapter = new ProfileAdapter(list, getContext());
+        list.add(new ProfileItem(0,"GENERAL INFORMATION"));
+        list.add(new ProfileItem(1,"Full Name","Zhamshid Irisbayev"));
+        list.add(new ProfileItem(1,"Id number","180103263"));
+        list.add(new ProfileItem(1,"Speciality","Information Systems"));
+        list.add(new ProfileItem(1,"Birthday","17.03.2001"));
+
+        list.add(new ProfileItem(0,"CONTACTS"));
+        list.add(new ProfileItem(1,"Phone","+7 771 973 17 17"));
+        list.add(new ProfileItem(1,"Email","180103263@stu.sdu.edu.kz"));
+
+        list.add(new ProfileItem(0,"ACCOUNT SETTINGS"));
+        list.add(new ProfileItem(2,"Language",R.drawable.ic_arrow_right));
+        list.add(new ProfileItem(2,"Notifications",R.drawable.ic_switch_off));
+
+        list.add(new ProfileItem(0,"TOOLS"));
+        list.add(new ProfileItem(2,"About",R.drawable.ic_arrow_right));
+        list.add(new ProfileItem(2,"Contacts",R.drawable.ic_arrow_right));
+
+
+
+        profileAdapter = new ProfileAdapter(list,listener, getContext());
         profile_rec.setAdapter(profileAdapter);
         profile_rec.setLayoutManager(new LinearLayoutManager(getContext()));
         //General Information - end
 
-        //Contacts - start
-        list1.add(new ProfileItem("Phone","+7 771 973 17 17"));
-        list1.add(new ProfileItem("Email","180103263@stu.sdu.edu.kz"));
-        profileAdapter = new ProfileAdapter(list1, getContext());
-        contact_rec.setAdapter(profileAdapter);
-        contact_rec.setLayoutManager(new LinearLayoutManager(getContext()));
-        //Contacts - end
+
+
 
 
         return view;

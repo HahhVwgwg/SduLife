@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.home.notifications.NotificationsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <include
+        layout="@layout/toolbar_item"
+        android:id="@+id/tbar"
+        />
+
+    <ImageView
+        android:id="@+id/calendar_img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:elevation="20dp"
+        android:src="@drawable/ic_fi_calendar"
+        app:layout_constraintBottom_toBottomOf="@+id/tbar"
+        app:layout_constraintEnd_toEndOf="@+id/tbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Notifications Fragment"
+        android:textColor="@color/mainColor"
+        android:textSize="25sp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

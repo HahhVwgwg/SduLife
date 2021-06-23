@@ -24,6 +24,7 @@ import kz.edu.sdulife.view.home.news.tab_layout.NewsTabFragment;
  * create an instance of this fragment.
  */
 public class NewsFragment extends Fragment {
+
     TabLayout tabLayout;
     ViewPager viewPager;
     TabFragmentAdapter tabFragmentAdapter;
