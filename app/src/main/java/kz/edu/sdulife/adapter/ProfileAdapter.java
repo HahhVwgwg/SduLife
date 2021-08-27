@@ -1,5 +1,6 @@
 package kz.edu.sdulife.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
@@ -54,10 +56,15 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return new ViewHolder2(view);
         }
 
+        else if(viewType == 3){
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.profile_rec_item3,
+                    parent, false);
+            return new ViewHolder4(view);
+        }
+
         else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.profile_rec_item2,
                     parent, false);
-
             return new ViewHolder3(view);
         }
     }
@@ -67,6 +74,10 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         holder.itemView.setOnClickListener(v -> {
             if (getItemViewType(position)==2) {
+                listener.onClick(position);
+            }
+
+            else if (getItemViewType(position)==3) {
                 listener.onClick(position);
             }
         });
@@ -84,6 +95,15 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ViewHolder2 holder2 = (ViewHolder2) holder;
             holder2.value_name.setText(item.getValue_name());
             holder2.value.setText(item.getValue());
+        }
+
+        else if (getItemViewType(position)==3) {
+            ProfileItem item = list.get(position);
+            ViewHolder4 holder4 = (ViewHolder4) holder;
+            holder4.value_name.setText(item.getValue_name());
+            holder4.lottieAnimationView.setAnimation(item.getIcon());
+            ((ViewHolder4) holder4).lottieAnimationView.setOnClickListener(v -> listener.onClick(position));
+            holder4.itemView.setOnClickListener(v -> listener.onClick(position));
         }
         else {
             ProfileItem item = list.get(position);
@@ -104,6 +124,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return 0;
         else if(list.get(position).getType() == 1)
             return 1;
+        else if (list.get(position).getType() == 3)
+            return 3;
         else return position;
 
     }
@@ -146,6 +168,18 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             value_name = itemView.findViewById(R.id.value_name);
             icon = (ImageView)itemView.findViewById(R.id.icon);
+
+        }
+    }
+    public class  ViewHolder4 extends RecyclerView.ViewHolder {
+        TextView value_name;
+        LottieAnimationView lottieAnimationView;
+        @SuppressLint("ResourceType")
+        public ViewHolder4(@NonNull View itemView) {
+            super(itemView);
+
+            value_name = itemView.findViewById(R.id.value_name);
+            lottieAnimationView = (LottieAnimationView) itemView.findViewById(R.id.switch_icon);
 
         }
     }

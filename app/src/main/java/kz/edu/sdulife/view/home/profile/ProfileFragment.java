@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.ArrayList;
 
 import kz.edu.sdulife.BuildConfig;
@@ -36,7 +38,7 @@ import kz.edu.sdulife.view.login.SignInActivity;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends BaseFragment {
-
+    boolean switch_on = false;
     TextView toolbar_text,app_version,app_version_code;
     RecyclerView profile_rec;
     ProfileAdapter profileAdapter;
@@ -121,17 +123,24 @@ public class ProfileFragment extends BaseFragment {
 //                    case 9:openFragment(new FoundsFragment());
 //                    break;
                     case 10:
-                        count = 1;
-                        if (count == 1) {
-                            ImageView switch_likes = (ImageView)(profile_rec.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.icon));
-                            Drawable myDrawable = getResources().getDrawable(R.drawable.ic_switch_on);
-                            switch_likes.setImageDrawable(myDrawable);
-                        }
-                        else {
-                            ImageView switch_likes = (ImageView)(profile_rec.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.icon));
-                            Drawable myDrawable = getResources().getDrawable(R.drawable.ic_switch_off);
-                            switch_likes.setImageDrawable(myDrawable);
-                        }
+                        LottieAnimationView isSwitched = (LottieAnimationView) view.findViewById(R.id.switch_icon);
+                        isSwitched.setSpeed(3f);
+                        System.out.println(isSwitched);
+                        isSwitched.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (switch_on){
+                                    isSwitched.setMinAndMaxProgress(0.5f, 1.0f);
+                                    isSwitched.playAnimation();
+                                    switch_on = false;
+                                }
+                                else{
+                                    isSwitched.setMinAndMaxProgress(0.0f, 0.5f);
+                                    isSwitched.playAnimation();
+                                    switch_on = true;
+                                }
+                            }
+                        });
                         break;
 
                 }
@@ -153,7 +162,7 @@ public class ProfileFragment extends BaseFragment {
 
         list.add(new ProfileItem(0,"ACCOUNT SETTINGS"));
         list.add(new ProfileItem(2,"Language",R.drawable.ic_arrow_right));
-        list.add(new ProfileItem(2,"Notifications",R.drawable.ic_switch_off));
+        list.add(new ProfileItem(3,"Notifications",R.raw.switch_anim));
 
         list.add(new ProfileItem(0,"TOOLS"));
         list.add(new ProfileItem(2,"About",R.drawable.ic_arrow_right));

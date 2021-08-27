@@ -14,7 +14,7 @@
     <LinearLayout
         android:id="@+id/value_name_layout"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,22 +24,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Language"
+            android:text="Notifications"
             android:textColor="@color/text_dark_60"
             android:textSize="18sp" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/switch_icon"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_right_arrow"
+        android:elevation="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_rawRes="@raw/switch_anim" />
 
 
 
